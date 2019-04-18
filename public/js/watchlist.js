@@ -34,9 +34,10 @@ window.onload = function()
            $('#table').empty();
            $('#table').append(result.toString());
          },
-         error:function(q,s,e){$('#table').empty();
-         $('#table').append(q.responseText);
-        }
-      });
+         error:function(q,s,e){
+           $('#table').empty();
+           $('#table').append(q.responseText);
+          }
+        });
   })
 }

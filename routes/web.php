@@ -75,3 +75,7 @@ Route::get( '/leihliste/edit/{leihgabe?}',
             'LeihlisteController@edit');
 Route::post('/leihliste/save/{leihgabe?}',
             'LeihlisteController@save');
+
+
+Route::view('/spa',
+            'spa/app');
