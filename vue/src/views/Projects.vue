@@ -1,11 +1,10 @@
 <template>
-  <div class="list">
-    <List />
-  </div>
+  <List />
 </template>
 
 <script>
-import List from "@/views/projects/List.vue";
+
+import List from "@/components/projects/List.vue";
 
 export default {
   name: "Projects",
@@ -13,4 +12,5 @@ export default {
     List
   }
 };
+
 </script>
