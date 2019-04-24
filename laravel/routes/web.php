@@ -12,6 +12,6 @@
 */
 
 Route::get(
-  '/',
+  '{route}',
   'HomeController@index'
-);
+)->where('route', '.*');

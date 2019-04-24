@@ -19,3 +19,7 @@ Route::group(['middleware' => 'api'], function ($router) {
     Route::post('refresh', 'AuthController@refresh');
     Route::post('me', 'AuthController@me');
 });
+
+Route::resources([
+    'projects' => 'ProjectController'
+]);

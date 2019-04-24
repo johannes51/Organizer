@@ -14,20 +14,25 @@
   <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
 
   <!-- Styles -->
-  <link href=/css/app.de342aca.css rel=preload as=style>
-  <link href=/css/chunk-vendors.4d0f03c6.css rel=preload as=style>
-  <link href=/js/app.6a759744.js rel=preload as=script>
-  <link href=/js/chunk-vendors.066524e6.js rel=preload as=script>
-  <link href=/css/chunk-vendors.4d0f03c6.css rel=stylesheet>
-  <link href=/css/app.de342aca.css rel=stylesheet>
+  <link href=/css/app.css rel=preload as=style>
+  <link href=/css/chunk-vendors.css rel=preload as=style>
+  <link href=/js/app.js rel=preload as=script>
+  <link href=/js/chunk-vendors.js rel=preload as=script>
+  <link href=/css/chunk-vendors.css rel=stylesheet>
+  <link href=/css/app.css rel=stylesheet>
 
 </head>
 
 <body id="app-layout">
   <div id="app"></div>
 
-  <script src=/js/chunk-vendors.066524e6.js></script> 
-  <script src=/js/app.6a759744.js></script> 
+  <script src=/js/chunk-vendors.js></script> 
+  <script src=/js/app.js></script>
+  @if (isset(Route::getCurrentRoute()->parameters['route']))
+  <script>
+  window.serverRoute = '/{{ Route::getCurrentRoute()->parameters['route'] }}';
+  </script>
+  @endif
 </body>
 
 </html>
