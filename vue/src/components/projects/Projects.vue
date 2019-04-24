@@ -1,10 +1,9 @@
 <template>
-  <List />
+  <List/>
 </template>
 
 <script>
-
-import List from "@/components/projects/List.vue";
+import List from "./List";
 
 export default {
   name: "Projects",
@@ -12,5 +11,4 @@ export default {
     List
   }
 };
-
 </script>

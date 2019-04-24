@@ -1,27 +1,36 @@
 <template>
   <div id="app">
-    <Header />
+    <Header/>
     <router-view/>
   </div>
 </template>
 
 <script>
-
-import Header from '@/components/layout/Header'
+import Header from "@/components/layout/Header";
+import {loadData} from "@/util/util"
 
 export default {
   name: "App",
   components: {
     Header
+  },
+  mounted: function() {
+    this.$store.dispatch("loadUser")
+    .then(() => {
+      loadData(this.$store);
+      if ("serverRoute" in Window) {
+        this.$router.push({ path: serverRoute });
+      } else {
+        this.$router.push({ path: '/' });
+      }
+    });
   }
-}
+};
 </script>
 
-
 <style>
-
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

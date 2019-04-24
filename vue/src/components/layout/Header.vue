@@ -4,14 +4,14 @@
       <b-navbar-toggle target="nav-collapse">
         <span class="sr-only">Toggle Navigation</span>
       </b-navbar-toggle>
-      
+
       <!-- Branding Image -->
       <b-navbar-brand to="/">Mehrdraufhaber Productions</b-navbar-brand>
     </div>
 
     <b-collapse id="navbar-collapse" is-nav>
-      <!-- Left Side Of Navbar -->    
-       <b-navbar-nav>
+      <!-- Left Side Of Navbar -->
+      <b-navbar-nav>
         <b-nav-item to="/projects">Projekte</b-nav-item>
         <b-nav-item to="/diary">Tagebuch</b-nav-item>
         <b-nav-item to="/filmliste">Filmliste</b-nav-item>
@@ -20,115 +20,51 @@
       </b-navbar-nav>
 
       <!-- Right Side Of Navbar -->
-      <b-navbar-nav class="ml-auto"><!-- Authentication Links -->
-        @if (Auth::guest())
-        <li>
-          <a>Login</a>
-        </li>
-        <li>
-          <a>Register</a>
-        </li>@else
-        <li class="dropdown">
-          <a
-            href="#"
-            class="dropdown-toggle"
-            data-toggle="dropdown"
-            role="button"
-            aria-expanded="false"
-          >
-            @NAME
-            <span class="caret"></span>
-          </a>
-
-          <ul class="dropdown-menu" role="menu">
-            <li>
-              <a>
-                <i class="fa fa-btn fa-sign-out"></i>Logout
-              </a>
-            </li>
-          </ul>
-        </li>@endif
+      <b-navbar-nav class="ml-auto">
+        <!-- Authentication Links -->
+        <template v-if="!isLoggedIn">
+          <li>
+            <router-link to="/login" class="nav-link">Login</router-link>
+          </li>
+          <li>
+            <router-link to="/register" class="nav-link">Register</router-link>
+          </li>
+        </template>
+        <template v-else>
+          <b-nav-item-dropdown :text="currentUser.name" right>
+            <b-dropdown-item href="#!" @click.prevent="logout">
+              <i class="fa fa-btn fa-sign-out"></i>Logout
+            </b-dropdown-item>
+          </b-nav-item-dropdown>
+        </template>
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>
 </template>
 
+<script>
+export default {
+  name: "Header",
+  methods: {
+    logout() {
+      this.$store.commit("logout");
+      this.$router.push({ path: "/" });
+    }
+  },
+  computed: {
+    isLoggedIn() {
+      return this.$store.getters.isLoggedIn;
+    },
+    currentUser() {
+      return this.$store.getters.currentUser;
+    }
+  }
+};
+</script>
+
 <style scoped>
-
-   
-body {
-  text-align: center;
-}
-
-form {
-  display: flex;
-  margin: auto;
-  width: 55%;
-}
-
-#table {
-  display: block;
-  align-items: center;
-}
-
-#filme {
-  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-  width: fixed;
-  margin: auto;
-  border-collapse: collapse;
-  table-layout: fixed;
-}
-
-#filme td, #filme th {
-  font-size: 1em;
-  border: 1px solid darkcyan;
-  padding: 3px 7px 2px 7px;
-}
-
-#filme th {
-  font-size: 1.1em;
-  text-align: left;
-  padding-top: 5px;
-  padding-bottom: 4px;
-  background-color: #8a96b8;
-  color: #ffffff;
-}
-
-#filme tr.alt td {
-  color: black;
-  background-color: lightgrey;
-}
-
-#filme a {
-  color: darkblue;
-}
-
-.checkbox {
-  text-align: right;
-}
-
-.namefield{
-    width: 100px;
-    display: inline-block;
-}
-.shufflefield{
-    width: 50px;
-    float: right;
-}
-
-fieldset, input {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-}
-fieldset {
-    margin:0;
-}
-
-.project-box {
-  float: left;
-  border: 2px solid darkcyan;
-  padding: 10px;
-  margin: 20px;
+a.navbar-laravel {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 </style>

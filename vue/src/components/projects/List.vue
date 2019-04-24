@@ -14,6 +14,7 @@
     <b-table
       id="projects-table"
       :items="items"
+      :fields="fields"
       :per-page="perPage"
       :current-page="currentPage"
       small
@@ -45,26 +46,35 @@
 <script>
 export default {
   name: "List",
-  data() {
-    return {
-      perPage: 3,
-      currentPage: 1,
-      items: [
-        { id: 1, first_name: "Fred", last_aname: "Flintstone" },
-        { id: 2, first_name: "Wilma", last_aname: "Flintstone" },
-        { id: 3, first_name: "Barney", last_aname: "Rubble" },
-        { id: 4, first_name: "Betty", last_aname: "Rubble" },
-        { id: 5, first_name: "Pebbles", last_aname: "Flintstone" },
-        { id: 6, first_name: "Bamm Bamm", last_aname: "Rubble" },
-        { id: 7, first_name: "The Great", last_aname: "Gazzoo" },
-        { id: 8, first_name: "Mr", last_aname: "Slate" },
-        { id: 9, first_name: "Pearl", last_aname: "Slaghoople" }
-      ]
-    };
-  },
   computed: {
+    user () {
+      return (this.$store.getters.currentUser);
+    },
+    items() {
+      return this.$store.getters.projects;
+    },
     rows() {
       return this.items.length;
+    },
+    fields() {
+      return {
+        Name: {
+          label: "Name",
+          sortable: true
+        },
+        Customer: {
+          label: "Auftraggeber",
+          sortable: true
+        },
+        Status: {
+          label: "Status",
+          sortable: true
+        },
+        created_at: {
+          label: "Beginn",
+          sortable: true
+        }
+      };
     }
   }
 };
