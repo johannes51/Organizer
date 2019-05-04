@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Leihgabe extends Model
+class Loan extends Model
 {
   protected $connection = 'nasmysql';
-  protected $table = 'Leihliste';
+  protected $table = 'loans';
   use SoftDeletes;
   protected $dates = ['deleted_at'];
 }

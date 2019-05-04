@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Project extends Model
 {
   protected $connection = 'nasmysql';
+  protected $table = 'projects';
   use SoftDeletes;
   protected $dates = ['deleted_at'];
 

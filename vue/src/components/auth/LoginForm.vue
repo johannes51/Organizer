@@ -52,7 +52,7 @@ export default {
     authenticate() {
       this.$store.commit("login");
 
-      axios
+      this.$axios
         .post("/api/login", this.$data.form)
         .then(response => {
           this.$store.commit("loginSuccess", response.data);

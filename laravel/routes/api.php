@@ -20,6 +20,7 @@ Route::group(['middleware' => 'api'], function ($router) {
     Route::post('me', 'AuthController@me');
 });
 
-Route::resources([
-    'projects' => 'ProjectController'
+Route::apiResources([
+    'projects' => 'ProjectController',
+    'loans' => 'LoansController'
 ]);

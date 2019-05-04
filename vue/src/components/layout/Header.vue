@@ -1,5 +1,5 @@
 <template>
-  <b-navbar fixed="top" toggleable="lg" type="light" style="light">
+  <b-navbar fixed="top" toggleable="lg" type="light" variant="light">
     <div class="navbar-header">
       <b-navbar-toggle target="nav-collapse">
         <span class="sr-only">Toggle Navigation</span>
@@ -14,9 +14,9 @@
       <b-navbar-nav>
         <b-nav-item to="/projects">Projekte</b-nav-item>
         <b-nav-item to="/diary">Tagebuch</b-nav-item>
-        <b-nav-item to="/filmliste">Filmliste</b-nav-item>
+        <b-nav-item to="/media">Filmliste</b-nav-item>
         <b-nav-item to="/watchlist">Watchlist</b-nav-item>
-        <b-nav-item to="/leihliste">Leihliste</b-nav-item>
+        <b-nav-item to="/loans">Leihliste</b-nav-item>
       </b-navbar-nav>
 
       <!-- Right Side Of Navbar -->
@@ -61,10 +61,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-a.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-}
-</style>

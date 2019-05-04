@@ -19,7 +19,7 @@ export default {
     .then(() => {
       loadData(this.$store);
       if ("serverRoute" in Window) {
-        this.$router.push({ path: serverRoute });
+        this.$router.push({ path: Window.serverRoute });
       } else {
         this.$router.push({ path: '/' });
       }

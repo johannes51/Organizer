@@ -1,23 +1,59 @@
 <template>
-  <div>
-    <form method="GET" action="/leihliste/edit">
-      <button type="submit">+</button>
-    </form>
-
-    <table id="filme">
-      <tr>
-        <th style="width: 300px">Gegenstand</th>
-        <th style="width: 300px">Leihgeber/nehmer</th>
-        <th style="width: 300px">Datum</th>
-      </tr>@foreach ($result as $key => $value)
-      <tr>
-        if ($key % 2 === 0) class="alt" endif id="row_$key">
-        <td>
-          <a>href="/leihliste/edit/ $value['id'] "> $value['Item']</a>
-        </td>
-        <td>$value['Gegner']</td>
-        <td>$value['created_at']</td>
-      </tr>@endforeach
-    </table>
+  <div class="content-justify-center row">
+    <!-- <b-pagination
+      v-model="currentPage"
+      :total-rows="rows"
+      :per-page="perPage"
+      aria-controls="loans-table"
+    ></b-pagination> -->
+    <b-table
+      id="loans-table"
+      :items="items"
+      :fields="fields"
+      small
+      striped
+    ></b-table>
+      <!-- :per-page="perPage"
+      :current-page="currentPage" -->
+    <div class="row">{{ this.bla }}</div>
   </div>
 </template>
+
+<script>
+export default {
+  name: "List",
+  data() {
+    return {
+      perPage: 10,
+      fields: {
+        item: {
+          label: "Gegenstand"
+        },
+        whitWHOM: {
+          label: "von/an",
+          sortable: true
+        },
+        direction: {
+          label: "Richtung",
+          sortable: true
+        },
+        created_at: {
+          label: "Datum",
+          sortable: true
+        }
+      }
+    };
+  },
+  computed: {
+    bla () {
+      return this.$store.getters.bla;
+    },
+    items() {
+      return this.$store.getters.loans;
+    },
+    rows() {
+      return this.items.length;
+    }
+  }
+};
+</script>

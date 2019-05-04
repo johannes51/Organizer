@@ -9,9 +9,14 @@ export default new Vuex.Store({
     currentUser: null,
     loading: false,
     auth_error: null,
-    projects: []
+    projects: [],
+    loans: [],
+    bla: ''
   },
   getters: {
+    bla(state) {
+      return state.bla;
+    },
     isLoggedIn(state) {
       return state.currentUser != null;
     },
@@ -23,6 +28,9 @@ export default new Vuex.Store({
     },
     projects(state) {
       return state.projects;
+    },
+    loans(state) {
+      return state.loans;
     }
   },
   mutations: {
@@ -36,34 +44,51 @@ export default new Vuex.Store({
       state.loading = false;
       state.auth_error = null;
       localStorage.setItem('access_token', payload.access_token);
-      axios.defaults.headers.common["Authorization"] = `Bearer ${payload.access_token}`;
+      window.axios.defaults.headers.common["Authorization"] = `Bearer ${payload.access_token}`;
     },
     loginFail(state, payload) {
       state.currentUser = null;
       state.loading = false;
-      if ('error' in payload && payload.error.response.status == 401) {
+      if (payload == null) {
+        state.auth_error = '';
+      } else if ('error' in payload && payload.error.response.status == 401) {
         state.auth_error = "Wrong email/password";
       } else {
-      state.auth_error = payload;
-    }
+        state.auth_error = payload;
+      }
     },
     logout(state) {
       state.currentUser = null;
       state.loading = false;
       state.auth_error = null;
       localStorage.setItem('access_token', null);
-      axios.defaults.headers.common["Authorization"] = '';
+      window.axios.defaults.headers.common["Authorization"] = '';
     },
     projects(state, payload) {
-      state.projects = payload.projects
+      state.projects = payload.projects;
+    },
+    loans(state, payload) {
+      state.loans = payload.data;
+    },
+    setLoan(state, payload) {
+      var index = state.loans.findIndex((element) => {
+        return (element['id'] == payload.data['id']);
+      });
+      if (index >= 0) {
+        Vue.set(state.loans, index, payload.data);
+      } else {
+        state.loans.push(payload.data);
+      }
+    },
+    setBla(state, payload) {
+      state.bla = payload;
     }
   },
   actions: {
     loadUser({ commit }) {
       if (localStorage.getItem('access_token') != null) {
         var localToken = localStorage.getItem('access_token');
-        return axios
-          .post("/api/me", {}, { headers: { 'Authorization': `Bearer ${localToken}` } })
+        return window.axios.post("/api/me", {}, { headers: { 'Authorization': `Bearer ${localToken}` } })
           .then(response => {
             var payload = Object.assign({}, { user: response.data, access_token: localToken });
             commit('loginSuccess', payload);
@@ -76,15 +101,45 @@ export default new Vuex.Store({
       }
     },
     loadProjects({ commit }) {
-      axios.get("/api/projects")
+      window.axios.get("/api/projects")
         .then((response) => {
           commit('projects', response.data)
         })
         .catch(error => {
           if (error.response != null && error.response.status == 401) {
-            commit('loginFail', null);
+            commit('loginFail');
           }
         })
+    },
+    loadLoans({ commit }) {
+      window.axios.get("/api/loans")
+        .then((response) => {
+          commit('loans', response.data);
+        })
+        .catch(error => {
+          if (error.response != null && error.response.status == 401) {
+            commit('loginFail');
+          }
+        })
+    },
+    saveLoan({ commit }, payload) {
+      var method = "";
+      var url = "/api/loans";
+      if (payload.id == null) {
+        method = "post";
+      } else {
+        method = "put";
+        url = url.concat("/".concat(payload.id));
+      }
+      window.axios({
+        method: method,
+        url: url,
+        data: payload
+      }).then((response) => {
+        commit('setLoan', response.data);
+      }).catch((error) => {
+        error;
+      })
     }
   }
 })
