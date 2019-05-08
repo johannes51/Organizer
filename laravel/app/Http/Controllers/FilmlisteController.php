@@ -31,7 +31,6 @@ class FilmlisteController extends Controller
   public function check(Request $request)
   {
     $id = $request->input('id', 'NULL');
-    \DB::connection('nasmysql')->enableQueryLog();
     if (is_numeric($id))
     {
       $new_value = (\App\Models\Film::find($id)['Gesehen'] == 1) ? 0 : 1;

@@ -16,4 +16,9 @@ class Project extends Model
   {
   	return $this->hasOne('\App\Models\Diary', 'id', 'diary_id');
   }
+
+  public function wps()
+  {
+    return $this->hasMany('\App\Models\WP', 'project_id', 'id');
+  }
 }
