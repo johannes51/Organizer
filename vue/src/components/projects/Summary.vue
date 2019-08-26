@@ -1,24 +1,27 @@
 <template>
-  <div class="container">
+  <div class="border border-primary">
+    <h3>Zusammenfassung</h3>
     <p>
-      <b>Name:</b>
-      $Name
+      <b>Name:</b> {{ data.name }}
     </p>
     <p>
-      <b>Auftraggeber:</b>
-      $Auftraggeber
+      <b>Auftraggeber:</b> {{ data.customer }}
     </p>
     <p>
-      <b>Status:</b>
-      $Status
+      <b>Status:</b> {{ data.status }}
     </p>
     <p>
-      <b>Beginn:</b>
-      $created
+      <b>Beginn:</b> {{ data.created_at }}
     </p>
     <p>
-      <b>Letzte Änderung:</b>
-      $updated
+      <b>Letzte Änderung:</b> {{ data.updated_at }}
     </p>
   </div>
 </template>
+
+<script>
+export default {
+  name: "Summary",
+  props: ["data"]
+}
+</script>

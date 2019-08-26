@@ -10,13 +10,10 @@ export default new Vuex.Store({
     loading: false,
     auth_error: null,
     projects: [],
-    loans: [],
-    bla: ''
+    currentProject: null,
+    loans: []
   },
   getters: {
-    bla(state) {
-      return state.bla;
-    },
     isLoggedIn(state) {
       return state.currentUser != null;
     },
@@ -28,6 +25,9 @@ export default new Vuex.Store({
     },
     projects(state) {
       return state.projects;
+    },
+    currentProject(state) {
+      return state.currentProject;
     },
     loans(state) {
       return state.loans;
@@ -65,7 +65,10 @@ export default new Vuex.Store({
       window.axios.defaults.headers.common["Authorization"] = '';
     },
     projects(state, payload) {
-      state.projects = payload.projects;
+      state.projects = payload.data;
+    },
+    currentProject(state, payload) {
+      state.currentProject = payload.data;
     },
     loans(state, payload) {
       state.loans = payload.data;
@@ -79,9 +82,6 @@ export default new Vuex.Store({
       } else {
         state.loans.push(payload.data);
       }
-    },
-    setBla(state, payload) {
-      state.bla = payload;
     }
   },
   actions: {
@@ -104,6 +104,17 @@ export default new Vuex.Store({
       window.axios.get("/api/projects")
         .then((response) => {
           commit('projects', response.data)
+        })
+        .catch(error => {
+          if (error.response != null && error.response.status == 401) {
+            commit('loginFail');
+          }
+        })
+    },
+    loadProject({ commit }, id) {
+      window.axios.get("/api/projects/".concat(id))
+        .then((response) => {
+          commit('currentProject', response.data)
         })
         .catch(error => {
           if (error.response != null && error.response.status == 401) {

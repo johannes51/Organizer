@@ -1,11 +1,33 @@
 <template>
-  <div>
-    <div class="project-box">
-      <h3>Zusammenfassung</h3>@component('projects.summary', $summaryPayload) @endcomponent
+  <div class="container">
+    <div class="col-md-4">
+      <Summary :data="summary" />
     </div>
-
-    <div class="project-box">
-      <h3>Tagebuch</h3>@component('projects.diary', $diaryPayload) @endcomponent
+    <div class="col-lg-7">
+      <Diary :entries="diary" />
     </div>
   </div>
 </template>
+
+<script>
+import Summary from "./Summary"
+import Diary from "../diary/Diary"
+import { mapGetters } from 'vuex';
+
+export default {
+  name: "Show",
+  components: {
+    Summary,
+    Diary
+  },
+  props: ["project"],
+  computed: {
+    summary() {
+      return this.$props.project;
+    },
+    diary() {
+      return this.$props.project.diary;
+    }
+  }
+};
+</script>

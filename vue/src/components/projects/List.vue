@@ -16,11 +16,18 @@
       small
       striped
       hover
+      @row-clicked="showProject"
     ></b-table>
       <!-- :per-page="perPage"
       :current-page="currentPage" -->
   </div>
 </template>
+
+<style>
+  .table-hover tbody tr:hover > td {
+    cursor: pointer;
+  }
+</style>
 
 <script>
 export default {
@@ -34,24 +41,33 @@ export default {
     },
     fields() {
       return {
-        Name: {
+        name: {
           label: "Name",
           sortable: true
         },
-        Customer: {
+        customer: {
           label: "Auftraggeber",
           sortable: true
         },
-        Status: {
+        status: {
           label: "Status",
           sortable: true
         },
         created_at: {
           label: "Beginn",
           sortable: true
+        },
+        updated_at: {
+          label: "Letzte Änderung",
+          sortable: true
         }
       };
     }
+  },
+  methods:{
+    showProject(item) {
+      this.$emit("project-selected", item.id);
+    }    
   }
 };
 </script>
