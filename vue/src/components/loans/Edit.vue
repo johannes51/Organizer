@@ -35,8 +35,8 @@
             <label for="doneCheckbox">Erledigt</label>
             <input type="checkbox" v-model="form.done" class="form-control" id="doneCheckbox">
           </div>
-          <input type="submit" value="Ok" class="btn btn-success">
-          <button class="btn btn-warning" @click="cancel">Cancel</button>
+          <b-button type="submit" class="btn btn-success">Ok</b-button>
+          <b-button variant="warning" @click="cancel">Cancel</b-button>
         </form>
       </div>
     </div>

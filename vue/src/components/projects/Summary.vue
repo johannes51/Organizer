@@ -11,10 +11,10 @@
       <b>Status:</b> {{ data.status }}
     </p>
     <p>
-      <b>Beginn:</b> {{ data.created_at }}
+      <b>Beginn:</b> {{ data.created_at | formatDate }}
     </p>
     <p>
-      <b>Letzte Änderung:</b> {{ data.updated_at }}
+      <b>Letzte Änderung:</b> {{ data.updated_at | formatDate }}
     </p>
   </div>
 </template>

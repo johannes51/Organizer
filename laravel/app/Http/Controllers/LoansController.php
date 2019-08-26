@@ -57,5 +57,6 @@ class LoansController extends Controller
     public function destroy(Loan $loan)
     {
         $loan->delete();
+        return "Reload";
     }
 }

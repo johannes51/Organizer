@@ -25,4 +25,5 @@ export function initialize(store, router) {
 export function loadData(store) {
     store.dispatch('loadProjects');
     store.dispatch('loadLoans');
+    store.dispatch('loadPlannedMedia');
 }

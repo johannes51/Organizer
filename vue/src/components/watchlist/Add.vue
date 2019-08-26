@@ -1,58 +1,55 @@
-<form action="/watchlist/list" method="POST">
-  {{ csrf_field() }}
-  <div style="float: left">
-    <input type="checkbox" name="typen[]" value="Film" id="film"
-           @if (in_array('Film', $typen)) checked="checked" @endif
-           />
-    <label for="film">Filme</label>
+<template>
+  <div class="container">
+    <form @submit.prevent="submit">
+      <b-form-group label="Name">
+        <input
+          type="text"
+          v-model="form.name"
+          class="form-control"
+          id="nameText"
+        >
+      </b-form-group>
+      <b-form-group label="Autor">
+        <input
+          type="text"
+          v-model="form.author"
+          class="form-control"
+          id="authorText"
+        >
+      </b-form-group>
+      <b-form-group label="Typ">
+        <b-form-radio-group v-model="form.type">
+          <b-form-radio value="Film">Film</b-form-radio>
+          <b-form-radio value="Buch">Buch</b-form-radio>
+          <b-form-radio value="Serie">Serie</b-form-radio>
+          <b-form-radio value="Spiel">Spiel</b-form-radio>
+        </b-form-radio-group>
+      </b-form-group>
+      <b-button type="submit" class="btn btn-success">Ok</b-button>
+      <b-button variant="warning" @click="cancel">Cancel</b-button>
+    </form>
   </div>
-  <div style="float: left">
-    <input type="checkbox" name="typen[]" value="Serie" id="serie"
-           @if (in_array('Serie', $typen)) checked="checked" @endif
-           />
-    <label for="serie">Serien</label>
-  </div>
-  <div style="float: left">
-    <input type="checkbox" name="typen[]" value="Buch" id="buch"
-           @if (in_array('Buch', $typen)) checked="checked" @endif
-           />
-    <label for="buch">Bücher</label>
-  </div>
-  <div style="float: left">
-    <input type="checkbox" name="typen[]" value="Spiel" id="spiel"
-           @if (in_array('Spiel', $typen)) checked="checked" @endif
-           />
-    <label for="spiel">Spiele</label>
-  </div>
-  <button>Filter</button>
-</form>
-<a href="/watchlist/add">Neu</a>
+</template>
 
-<div id="table">
-@include('watchlist.table')
-</div>
-
-<script src="{{ asset('js/watchlist.js') }}" type="text/javascript"></script>
-
-<form action="/watchlist/add" method="POST">
-  {{ csrf_field() }}
-  <fieldset style="width: 45%; float: left">
-    <legend>Hinzufügen zu Watchlist</legend>
-    <div>
-      <label for="name">Name</label>
-      <input type="search" name="name" id="name" />
-    </div>
-    <div>
-      <label for="autor">Autor</label>
-      <input type="search" name="autor" id="autor" />
-    </div>
-    <div>
-       <select name="typ" size="4">
-         <option>Film</option>
-         <option>Buch</option>
-         <option>Serie</option>
-         <option>Spiel</option>
-       </select>
-    </div>
-    <button>Hinzufügen</button>
-</form>
+<script>
+export default {
+  name: "Add",
+  data() {
+    return {
+      form: {
+        name: '',
+        author: '',
+        type: null
+      }
+    }
+  },
+  methods: {
+    submit() {
+      this.$emit("done", this.$data.form);
+    },
+    cancel() {
+      this.$emit("done", null);
+    }
+  }
+}
+</script>

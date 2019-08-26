@@ -23,5 +23,6 @@ Route::group(['middleware' => 'api'], function ($router) {
 Route::apiResources([
     'projects' => 'ProjectController',
     'loans' => 'LoansController',
+    'watchlist' => 'WatchlistController',
     'wps' => 'WPController'
 ]);

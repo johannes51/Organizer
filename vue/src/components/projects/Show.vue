@@ -12,7 +12,6 @@
 <script>
 import Summary from "./Summary"
 import Diary from "../diary/Diary"
-import { mapGetters } from 'vuex';
 
 export default {
   name: "Show",

@@ -11,7 +11,8 @@ export default new Vuex.Store({
     auth_error: null,
     projects: [],
     currentProject: null,
-    loans: []
+    loans: [],
+    plannedMedia: null
   },
   getters: {
     isLoggedIn(state) {
@@ -31,6 +32,9 @@ export default new Vuex.Store({
     },
     loans(state) {
       return state.loans;
+    },
+    plannedMedia(state) {
+      return state.plannedMedia;
     }
   },
   mutations: {
@@ -82,6 +86,9 @@ export default new Vuex.Store({
       } else {
         state.loans.push(payload.data);
       }
+    },
+    plannedMedia(state, payload) {
+      state.plannedMedia = payload.data;
     }
   },
   actions: {
@@ -120,7 +127,7 @@ export default new Vuex.Store({
           if (error.response != null && error.response.status == 401) {
             commit('loginFail');
           }
-        })
+        });
     },
     loadLoans({ commit }) {
       window.axios.get("/api/loans")
@@ -154,7 +161,48 @@ export default new Vuex.Store({
         }
       }).catch((error) => {
         error;
+      });
+    },
+    loadPlannedMedia({ commit }) {
+      window.axios.get("/api/watchlist")
+        .then((response) => {
+          commit('plannedMedia', response.data)
+        })
+        .catch(error => {
+          if (error.response != null && error.response.status == 401) {
+            commit('loginFail');
+          }
+        });
+    },
+    addPlannedMedia({ commit, dispatch }, payload) {
+      window.axios({
+        url: "/api/watchlist",
+        method: "post",
+        data: payload
       })
+        .then((response) => {
+          if (response.data == "Reload") {
+            dispatch('loadPlannedMedia');
+          }
+        })
+        .catch(error => {
+          if (error.response != null && error.response.status == 401) {
+            commit('loginFail');
+          }
+        });
+    },
+    deletePlannedMedium({ commit, dispatch }, payload) {
+      window.axios.delete("/api/watchlist/".concat(payload))
+      .then((response) => {
+        if (response.data == "Reload") {
+          dispatch('loadPlannedMedia');
+        }
+      })
+      .catch((error) => {
+        if (error.response != null && error.response.status == 401) {
+          commit('loginFail');
+        }
+      });
     }
   }
 })
