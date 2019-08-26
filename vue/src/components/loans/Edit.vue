@@ -31,7 +31,7 @@
               <option value="from">ausgeliehen</option>
             </select>
           </div>
-          <div class="form group row" v-if="done != null">
+          <div class="form group row" v-if="form.done != null">
             <label for="doneCheckbox">Erledigt</label>
             <input type="checkbox" v-model="form.done" class="form-control" id="doneCheckbox">
           </div>
@@ -58,13 +58,6 @@ export default {
     };
   },
   props: ["item"],
-  watchers: {
-    item: function() {
-      if (this.$props.item != null) {
-        this.$dataform = this.$props.item;
-      }
-    }
-  },
   methods: {
     submit() {
       this.$store.dispatch("saveLoan", this.$data.form);
@@ -79,6 +72,11 @@ export default {
       } else {
         return "erstellen";
       }
+    }
+  },
+  mounted() {
+    if (this.$props.item != null) {
+      this.$data.form = this.$props.item;
     }
   }
 };

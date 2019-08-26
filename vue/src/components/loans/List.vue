@@ -12,12 +12,19 @@
       :fields="fields"
       small
       striped
+      @row-clicked="editLoan"
     ></b-table>
       <!-- :per-page="perPage"
       :current-page="currentPage" -->
     <div class="row">{{ this.bla }}</div>
   </div>
 </template>
+
+<style>
+  .table-hover tbody tr:hover > td {
+    cursor: pointer;
+  }
+</style>
 
 <script>
 export default {
@@ -53,6 +60,11 @@ export default {
     },
     rows() {
       return this.items.length;
+    }
+  },
+  methods: {
+    editLoan(item) {
+      this.$emit("loan-selected", item)
     }
   }
 };

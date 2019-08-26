@@ -122,7 +122,7 @@ export default new Vuex.Store({
           }
         })
     },
-    saveLoan({ commit }, payload) {
+    saveLoan({ commit, dispatch }, payload) {
       var method = "";
       var url = "/api/loans";
       if (payload.id == null) {
@@ -136,7 +136,11 @@ export default new Vuex.Store({
         url: url,
         data: payload
       }).then((response) => {
-        commit('setLoan', response.data);
+        if (response.data == "Reload") {
+          dispatch('loadLoans');
+        } else {
+          commit('setLoan', response.data);
+        }
       }).catch((error) => {
         error;
       })

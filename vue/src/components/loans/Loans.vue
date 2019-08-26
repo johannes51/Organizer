@@ -1,14 +1,14 @@
 <template>
   <div class="content">
     <div class="row justify-content-center">
-      <form v-if="currentItem == null" @submit.prevent="add">
+      <form v-if="!currentItem.set" @submit.prevent="add">
         <div class="form row">
           <input type="submit" class="form-control" value="Neu">
         </div>
       </form>
-      <Edit v-if="currentItem != null" :item="currentItem" @done="done" />
+      <Edit v-if="currentItem.set" :item="currentItem" @done="done" />
     </div>
-    <List/>
+    <List v-if="!currentItem.set" @loan-selected="edit" />
   </div>
 </template>
 
@@ -24,15 +24,22 @@ export default {
   },
   data() {
     return {
-      currentItem: null
+      currentItem: {
+        set: false
+      }
     };
   },
   methods: {
     add() {
-      this.$data.currentItem = { id: null, item: '', with: '', direction: 'from' };
+      this.$data.currentItem = Object.assign({}, this.$data.currentItem, { id: null, item: '', with: '', direction: 'from', set: true});
     },
     done() {
-      this.$data.currentItem = null;
+      this.$data.currentItem = {set: false};
+    },
+    edit(item) {
+      this.$data.currentItem = Object.assign({}, this.$data.currentItem, item);
+      this.$data.currentItem.set = true;
+      this.$data.currentItem.done = false;
     }
   }
 };
