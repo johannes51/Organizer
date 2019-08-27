@@ -88,6 +88,11 @@ export default {
       }
     }
   },
+  mounted() {
+    if (this.media) {
+      this.$data.rows = this.media.length;
+    }
+  },
   methods: {
     filterItems(row, filter) {
       var visible = true;

@@ -36,7 +36,7 @@ export default {
         item: {
           label: "Gegenstand"
         },
-        whitWHOM: {
+        withWHOM: {
           label: "von/an",
           sortable: true
         },

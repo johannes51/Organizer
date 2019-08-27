@@ -18,7 +18,7 @@
             <label for="whitWHOMText">Leihgeber/nehmer</label>
             <input
               type="text"
-              v-model="form.whitWHOM"
+              v-model="form.withWHOM"
               class="form-control"
               placeholder="Leihgeber/nehmer"
               id="whitWHOMText"
@@ -51,7 +51,7 @@ export default {
       form: {
         id: null,
         item: "",
-        whitWHOM: "",
+        withWHOM: "",
         direction: "",
         done: null
       }
