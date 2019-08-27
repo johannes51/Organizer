@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import Loans from "@/components/loans/Loans.vue";
+import Loans from "@/components/loans/Loans";
 
 export default {
   name: "LoansView",

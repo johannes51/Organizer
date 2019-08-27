@@ -12,7 +12,9 @@ export default new Vuex.Store({
     projects: [],
     currentProject: null,
     loans: [],
-    plannedMedia: null
+    plannedMedia: null,
+    diary: null,
+    media: null
   },
   getters: {
     isLoggedIn(state) {
@@ -35,6 +37,12 @@ export default new Vuex.Store({
     },
     plannedMedia(state) {
       return state.plannedMedia;
+    },
+    diary(state) {
+      return state.diary;
+    },
+    media(state) {
+      return state.media;
     }
   },
   mutations: {
@@ -89,6 +97,12 @@ export default new Vuex.Store({
     },
     plannedMedia(state, payload) {
       state.plannedMedia = payload.data;
+    },
+    diary(state, payload) {
+      state.diary = payload.data;
+    },
+    media(state, payload) {
+      state.media = payload.data;
     }
   },
   actions: {
@@ -121,13 +135,33 @@ export default new Vuex.Store({
     loadProject({ commit }, id) {
       window.axios.get("/api/projects/".concat(id))
         .then((response) => {
-          commit('currentProject', response.data)
+          commit('currentProject', response.data);
         })
         .catch(error => {
           if (error.response != null && error.response.status == 401) {
             commit('loginFail');
           }
         });
+    },
+    reloadProject(context) {
+      console.log(context);
+      if (context.state.currentProject) {
+        window.axios.get("/api/projects/".concat(context.state.currentProject.id))
+          .then((response) => {
+            context.commit('currentProject', response.data);
+          })
+          .catch(error => {
+            if (error.response != null && error.response.status == 401) {
+              context.commit('loginFail');
+            }
+          });
+      } else {
+        console.log("c")
+      }
+    },
+    unloadProject({ commit }) {
+      var data = { data: null };
+      commit('currentProject', data);
     },
     loadLoans({ commit }) {
       window.axios.get("/api/loans")
@@ -203,6 +237,66 @@ export default new Vuex.Store({
           commit('loginFail');
         }
       });
+    },
+    loadDiary({ commit }) {
+      window.axios.get("/api/diary")
+        .then((response) => {
+          commit('diary', response.data)
+        })
+        .catch(error => {
+          if (error.response != null && error.response.status == 401) {
+            commit('loginFail');
+          }
+        });
+    },
+    saveDiaryEntry({ commit, dispatch }, payload) {
+      window.axios.post("/api/diary", payload)
+        .then((response) => {
+          if (response.data == "Reload") {
+            dispatch('loadDiary');
+            dispatch('reloadProject');
+          }
+        })
+        .catch(error => {
+          if (error.response != null && error.response.status == 401) {
+            commit('loginFail');
+          }
+        });
+    },
+    loadMedia({ commit }) {
+      window.axios.get("/api/media")
+        .then((response) => {
+          commit('media', response.data);
+        })
+        .catch(error => {
+          if (error.response != null && error.response.status == 401) {
+            commit('loginFail');
+          }
+        })
+    },
+    saveMedia({ commit, dispatch }, payload) {
+      console.log(payload)
+      window.axios.put("/api/media/".concat(payload.id), payload)
+      .then((response) => {
+        if (response.data == "Reload") {
+          dispatch('loadMedia');
+        }
+      })
+      .catch(error => {
+        if (error.response != null && error.response.status == 401) {
+          commit('loginFail');
+        }
+      });
+    },
+    toggleMediaSeen({ dispatch }, payload) {
+      var newPl = Object.assign({}, payload);
+      if (payload.Status == "seen") {
+        newPl.Status = "unseen";
+      } else {
+        newPl.Status = "seen";
+      }
+      dispatch('saveMedia', newPl);
     }
   }
 })
+ 

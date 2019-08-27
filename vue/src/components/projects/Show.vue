@@ -1,10 +1,13 @@
 <template>
   <div class="container">
-    <div class="col-md-4">
-      <Summary :data="summary" />
-    </div>
-    <div class="col-lg-7">
-      <Diary :entries="diary" />
+    <div class="row">
+      <div class="col-md-4">
+        <Summary :data="summary" />
+        <b-button @click="back">Zurück</b-button>
+      </div>
+      <div class="col-lg-7">
+        <Diary :diary="diary" />
+      </div>
     </div>
   </div>
 </template>
@@ -26,6 +29,11 @@ export default {
     },
     diary() {
       return this.$props.project.diary;
+    }
+  },
+  methods: {
+    back() {
+      this.$emit('done')
     }
   }
 };

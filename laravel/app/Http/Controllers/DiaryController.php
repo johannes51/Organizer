@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Resources\DiaryResource;
+use App\Http\Resources\DiaryEntryResource;
+use App\Models\Diary;
+use App\Models\DiaryEntry;
 
 class DiaryController extends Controller
 {
@@ -13,20 +17,10 @@ class DiaryController extends Controller
 
   public function index(Request $request)
   {
-    $payload = array();
-
-    $result = \App\Models\Diary::find(1)->entries()->select('id', 'created_at');
-    
-    $payload['result'] = $result->orderBy('created_at', 'DESC')->get();
-    $payload['diaryId'] = 1;
-    foreach ($payload['result'] as $value) {
-      $value->created_at = $value->created_at->timezone('Europe/Berlin');
-    }
-
-    return view('diary.index', $payload);
+    return DiaryEntryResource::collection(Diary::find(1)->entries()->select('id', 'created_at')->get());
   }
 
-  public function show(\App\Models\DiaryEntry $diaryEntry)
+  public function show(DiaryEntry $diaryEntry)
   {
     $payload = array();
     $payload['entry'] = array();
@@ -39,26 +33,20 @@ class DiaryController extends Controller
     return view('diary.show', $payload);
   }
 
-  public function showAdd(Request $request)
+  public function store(Request $request)
   {
-    $diaryId = $request->input('diaryId', NAN);
-    $referrer = $request->input('referrer', '');
-    return view('diary.add', ['diaryId' => $diaryId, 'referrer' => $referrer]);
-  }
+    $entry = new DiaryEntry;
+    $entry->text = $request->input('text', '');
 
-  public function add(Request $request)
-  {
     $diaryId = $request->input('diaryId', NAN);
-    if (is_numeric($diaryId)) {
-      $diary = \App\Models\Diary::find($diaryId);
-      if (isset($diary)) {
-        $entry = new \App\Models\DiaryEntry;
-        $entry->text = $request->input('text', '');
-        if ($entry->text != '') {
-          $diary->entries()->save($entry);
-        }
-      }
+    if (!is_numeric($diaryId) || $entry->text == '') {
+      return response('Error 400', 400);
     }
-    return redirect($request->input('referrer', '/diary'));
-  }
+    $diary = Diary::find($diaryId);
+    if (!isset($diary) || !$diary->entries()->save($entry)) {
+      return response('Error 500', 500);
+    } else {
+      return "Reload";
+    }
+  } 
 }

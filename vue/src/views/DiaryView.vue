@@ -1,9 +1,14 @@
 <template>
-  <div id="formbox">
-    <form method="POST" action="/diary/add">
-      <input type="hidden" name="diaryId" value=" $diaryId ">
-      <input type="hidden" name="referrer" value="/diary">
-      <button type="submit">Neu</button>
-    </form>
-  </div>
+  <Diary v-if="diary != null" :diary="diary" />
 </template>
+
+<script>
+import Diary from "@/components/diary/Diary"
+import { mapGetters } from "vuex"
+
+export default {
+  name: "DiaryView",
+  components: { Diary },
+  computed: mapGetters(['diary'])
+}
+</script>

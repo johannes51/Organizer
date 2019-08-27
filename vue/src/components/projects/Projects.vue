@@ -1,7 +1,7 @@
 <template>
   <div>
     <List v-if="currentProject == null" @project-selected="show" />
-    <Show v-if="currentProject != null" :project="currentProject" />
+    <Show v-if="currentProject != null" :project="currentProject" @done="unShow" />
   </div>
 </template>
 
@@ -22,6 +22,9 @@ export default {
   methods: {
     show(itemId) {
       this.$store.dispatch("loadProject", itemId);
+    },
+    unShow() {
+      this.$store.dispatch("unloadProject");
     }
   }
 };

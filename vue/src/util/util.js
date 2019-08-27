@@ -26,4 +26,6 @@ export function loadData(store) {
     store.dispatch('loadProjects');
     store.dispatch('loadLoans');
     store.dispatch('loadPlannedMedia');
+    store.dispatch('loadDiary');
+    store.dispatch('loadMedia');
 }

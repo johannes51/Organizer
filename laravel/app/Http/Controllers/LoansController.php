@@ -15,7 +15,7 @@ class LoansController extends Controller
 
     public function index(Request $request)
     {
-        return LoanResource::collection(Loan::where('deleted_at', null)->get());
+        return LoanResource::collection(Loan::all());
     }
 
     public function store(Request $request)
@@ -24,15 +24,13 @@ class LoansController extends Controller
         $loan->item = $request->input('item', '');
         $loan->whitWHOM = $request->input('whitWHOM', '');
         $loan->direction = $request->input('direction', '');
-        if ($loan->item != '' && $loan->whitWHOM != '' && $loan->direction != '') {
-            if ($loan->save()) {
-                return new LoanResource($loan);
-            } else {
-                return response('Error 500', 500);
-            }
-        } else {
+        if ($loan->item == '' || $loan->whitWHOM == '' || $loan->direction == '') {
             return response('Error 400', 400);
         }
+        if (!$loan->save()) {
+            return response('Error 500', 500);
+        } 
+        return new LoanResource($loan);
     }
 
     public function update(Request $request, Loan $loan)

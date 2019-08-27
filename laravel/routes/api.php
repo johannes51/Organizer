@@ -24,5 +24,7 @@ Route::apiResources([
     'projects' => 'ProjectController',
     'loans' => 'LoansController',
     'watchlist' => 'WatchlistController',
+    'media' => 'MediaController',
+    'diary' => 'DiaryController',
     'wps' => 'WPController'
 ]);
