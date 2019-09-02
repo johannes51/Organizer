@@ -144,7 +144,6 @@ export default new Vuex.Store({
         });
     },
     reloadProject(context) {
-      console.log(context);
       if (context.state.currentProject) {
         window.axios.get("/api/projects/".concat(context.state.currentProject.id))
           .then((response) => {
@@ -155,8 +154,6 @@ export default new Vuex.Store({
               context.commit('loginFail');
             }
           });
-      } else {
-        console.log("c")
       }
     },
     unloadProject({ commit }) {
@@ -275,7 +272,6 @@ export default new Vuex.Store({
         })
     },
     saveMedia({ commit, dispatch }, payload) {
-      console.log(payload)
       window.axios.put("/api/media/".concat(payload.id), payload)
       .then((response) => {
         if (response.data == "Reload") {

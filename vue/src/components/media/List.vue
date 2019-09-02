@@ -97,16 +97,16 @@ export default {
     filterItems(row, filter) {
       var visible = true;
       if (filter.title) {
-        var s1 = row.Name.toLowerCase();
-        var s2 = filter.title.toLowerCase();
-        if (!s1.includes(s2)) {
+        var title = row.Name.toLowerCase();
+        var titleFilter = filter.title.toLowerCase();
+        if (!title.includes(titleFilter)) {
           visible = false;
         }
       }
       if (filter.director) {
-        var s1 = row.Regie.toLowerCase();
-        var s2 = filter.director.toLowerCase();
-        if (!s1.includes(s2)) {
+        var director = row.Regie.toLowerCase();
+        var directorFilter = filter.director.toLowerCase();
+        if (!director.includes(directorFilter)) {
           visible = false;
         }
       }
