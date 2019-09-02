@@ -13,7 +13,10 @@
       small
       striped
       @row-clicked="editLoan"
-    ></b-table>
+    >
+      <template slot="direction" slot-scope="row">{{ row.item.direction == "to" ? "verliehen" : "ausgeliehen" }}</template>
+      <template slot="created_at" slot-scope="row">{{ row.item.created_at | formatDate }}</template>
+    </b-table>
       <!-- :per-page="perPage"
       :current-page="currentPage" -->
     <div class="row">{{ this.bla }}</div>

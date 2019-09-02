@@ -17,7 +17,10 @@
       striped
       hover
       @row-clicked="showProject"
-    ></b-table>
+    >
+      <template slot="created_at" slot-scope="row">{{ row.item.created_at | formatDate }}</template>
+      <template slot="updated_at" slot-scope="row">{{ row.item.updated_at | formatDate }}</template>
+    </b-table>
       <!-- :per-page="perPage"
       :current-page="currentPage" -->
   </div>
