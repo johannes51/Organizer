@@ -42,6 +42,12 @@
       </template>
     </b-table>
 
+    <b-pagination
+      v-model="currentPage"
+      :total-rows="rows"
+      :per-page="perPage"
+      aria-controls="watchlist-table"
+    ></b-pagination>
   </div>
 </template>
 
