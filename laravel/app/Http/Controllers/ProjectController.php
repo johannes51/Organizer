@@ -15,7 +15,7 @@ class ProjectController extends Controller
     
     public function index()
     {
-        return ProjectResource::collection(Project::all());
+        return ProjectResource::collection(Project::where('status', '!=', 'Beendet')->andWhere('status', '!=', 'Abgebrochen')->get());
     }
 
     public function show(Project $project)
