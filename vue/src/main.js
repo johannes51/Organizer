@@ -12,7 +12,6 @@ import moment from 'moment-timezone'
 
 Vue.filter('formatDate', function(value) {
   if (value) {
-    console.log(moment(String(value)))
     return moment(String(value)).tz("Europe/Berlin").format('DD/MM/YYYY HH:mm');
   }
 })

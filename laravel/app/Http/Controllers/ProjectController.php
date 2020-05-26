@@ -15,12 +15,12 @@ class ProjectController extends Controller
     
     public function index()
     {
-        return ProjectResource::collection(Project::where('status', '!=', 'Beendet')->andWhere('status', '!=', 'Abgebrochen')->get());
+        return ProjectResource::collection(Project::where('status', '!=', 'Beendet')->where('status', '!=', 'Abgebrochen')->get());
     }
 
     public function show(Project $project)
     {
-        return new ProjectResource($project->load(['diary', 'diary.entries']));
+        return new ProjectResource($project->load(['diary', 'diary.entries', 'wps']));
     }
 
     // public function store(Request $request)

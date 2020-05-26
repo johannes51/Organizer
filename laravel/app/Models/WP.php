@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class WP extends Model
 {
-    protected $connection = 'nasmysql';
+    protected $connection = 'lifemysql';
     protected $table = 'wps';
     use SoftDeletes;
     protected $dates = ['deleted_at'];

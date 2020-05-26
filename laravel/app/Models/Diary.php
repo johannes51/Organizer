@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Diary extends Model
 {
-  	protected $connection = 'nasmysql';
+  	protected $connection = 'lifemysql';
     use SoftDeletes;
     protected $dates = ['deleted_at'];
     

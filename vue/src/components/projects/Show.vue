@@ -9,18 +9,25 @@
         <Diary :diary="diary" />
       </div>
     </div>
+    <div class="row">
+      <div class="col-lg-7">
+        <WBS :nodeStructure="wbs" />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import Summary from "./Summary"
 import Diary from "../diary/Diary"
+import WBS from "./WBS"
 
 export default {
   name: "Show",
   components: {
     Summary,
-    Diary
+    Diary,
+    WBS
   },
   props: ["project"],
   computed: {
@@ -29,6 +36,9 @@ export default {
     },
     diary() {
       return this.$props.project.diary;
+    },
+    wbs() {
+      return this.$props.project.wps;
     }
   },
   methods: {

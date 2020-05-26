@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Loan extends Model
 {
-  protected $connection = 'nasmysql';
+  protected $connection = 'lifemysql';
   protected $table = 'loans';
   use SoftDeletes;
   protected $dates = ['deleted_at'];

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Resources\DiaryResource;
 use App\Http\Resources\DiaryEntryResource;
 use App\Models\Diary;
 use App\Models\DiaryEntry;
@@ -17,20 +16,7 @@ class DiaryController extends Controller
 
   public function index(Request $request)
   {
-    return DiaryEntryResource::collection(Diary::find(1)->entries()->select('id', 'created_at')->get());
-  }
-
-  public function show(DiaryEntry $diaryEntry)
-  {
-    $payload = array();
-    $payload['entry'] = array();
-    $payload['entry']['created'] = $diaryEntry->created_at->timezone('Europe/Berlin');
-    $payload['entry']['updated'] = $diaryEntry->updated_at->timezone('Europe/Berlin');
-    $payload['entry']['text'] = $diaryEntry->Text;
-
-    $payload['entry']['referrer'] = '/diary';
-
-    return view('diary.show', $payload);
+    return DiaryEntryResource::collection(Diary::find(1)->entries()->oldest()->select('id', 'created_at')->get());
   }
 
   public function store(Request $request)

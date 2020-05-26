@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Film extends Model
 {
-  protected $connection = 'nasmysql';
+  protected $connection = 'lifemysql';
   protected $table = 'Filme';
   public $timestamps = false;
 }
