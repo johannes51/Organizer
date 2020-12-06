@@ -10,9 +10,11 @@
   "dependencies": {
     "bootstrap-vue": "^2.0.0-rc.13",
     "core-js": "^2.6.5",
+    "dhtmlx-gantt": "^6.3.7",
     "jquery": "^3.4.0",
     "moment-timezone": "^0.5.26",
     "treant-js": "^1.0.1",
+    "raphael": "^2.3.0",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
     "vuex": "^3.0.1"
