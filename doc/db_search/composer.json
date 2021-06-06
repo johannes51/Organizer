@@ -1,0 +1,13 @@
+{
+    "name": "vendor/film-d-b",
+    "description": "Description of project FilmDB.",
+    "authors": [
+        {
+            "name": "jo",
+            "email": "your@email.here"
+        }
+    ],
+    "require": {
+        "mhor/php-mediainfo": "dev-master"
+    }
+}
