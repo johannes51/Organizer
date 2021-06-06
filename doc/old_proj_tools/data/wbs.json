@@ -1,0 +1,420 @@
+{
+  "name": "Titel",
+  "wp": [
+    {
+      "name": "Literatur",
+      "wp": [
+        {
+          "name": "Zuverlässigkeit - Theorie",
+          "objectives": [ "Untersuchung der theoretischen Methoden in der Zuverlässigkeitsanalyse" ],
+          "inputs": [ "Recherche zum Thema Zuverlässigkeitsanalyse" ],
+          "outputs": [
+            {
+              "to": "AP 2100",
+              "reason": "Liefert die theoretische Grundlage"
+            }
+          ],
+          "tasks": [
+            "Mathematische Grundlagen zu Statistik und Zuverlässigkeit",
+            "Theroetischer Hintergrund aktueller Methoden"
+          ],
+          "results": [ "Verständninis der theoretischen Grundlagen aktueller Zuverlässigkeitsmethoden" ],
+          "number": 1100,
+          "start": "2019-04-30",
+          "duration": 2,
+          "type": "task"
+        },
+        {
+          "name": "Satellitenmissionen und Energieerzeugung",
+          "objectives": [ "Untersuchung der Konzeption von Satellitenmission vor allem im Bezug auf Energieerzeugung" ],
+          "inputs": [ "Recherche zum Thema Satellitenmissionen und Energieerzeugung" ],
+          "outputs": [
+            {
+              "to": "AP 3100",
+              "reason": "Ermöglicht korrekte Modellierung"
+            }
+          ],
+          "tasks": [
+            "Übersicht über die Planung von Satellitenmissionen",
+            "Betrachtung der Energiegewinnung als Systemtreiber",
+            "Ermittlung des Einflusses von Degradation"
+          ],
+          "results": [ "Verständninis der kritischen Eigenschaften von Solarzellen für die Systemarchitektur" ],
+          "number": 1200,
+          "start": "2019-05-04",
+          "duration": 1.5,
+          "type": "task"
+        },
+        {
+          "name": "Zuverlässigkeit - aktuelle Methoden",
+          "objectives": [ "Übersicht der aktuellen Methode zur Zuverlässigkeitsanalyse" ],
+          "inputs": [ "Tools und Literatur zur Zuverlässigkeitsanalyse" ],
+          "outputs": [
+            {
+              "to": "AP 2100+3100",
+              "reason": "Vorraussetzung für Benutzung"
+            }
+          ],
+          "tasks": [
+            "Recherche zu aktuellen Methoden in Luft- und Raumfahrt",
+            "Vergleich mit Benutzung und Ein-/Ausgabeformat der untersuchten Tools"
+          ],
+          "results": [ "Brückenschlag zwischen Theorie und konkreten Tools zur Zuverlässigkeitsanalyse" ],
+          "number": 1300,
+          "start": "2019-04-15",
+          "duration": 1.5,
+          "type": "task"
+        },
+        {
+          "name": "Neue Methoden",
+          "objectives": [ "Vergleich der aktuellen Methoden mit dem neuen Tool SyRelAnX" ],
+          "inputs": [
+            "SyRelAnX/SatelliteToolbox",
+            "Literatur zu diesen Tools/Methoden"
+          ],
+          "outputs": [
+            {
+              "to": "AP 2100+3100",
+              "reason": "Vorraussetzung für Benutzung"
+            }
+          ],
+          "tasks": [
+            "Untersuchung der Grundlagen und Tool SyRelAnX",
+            "Vergleich der aktuellen Methoden mit Performance-basierten Tools"
+          ],
+          "results": [ "Einführung der neuen Methoden in bestehenden Kontext" ],
+          "number": 1400,
+          "start": "2019-04-15",
+          "duration": 1.5,
+          "type": "task"
+        },
+        {
+          "name": "Daten",
+          "objectives": [ "Sammlung von Realdaten zum untersuchten System" ],
+          "inputs": [ "Daten von Satellitenmissionen" ],
+          "outputs": [
+            {
+              "to": "AP 2200",
+              "reason": "Daten die untersucht werden"
+            }
+          ],
+          "tasks": [
+            "Sammlung von Daten zu Satellitenmissionen",
+            "Auswahl geeigneter Datensätze"
+          ],
+          "results": [ "Daten zur Analyse wurden ausgewählt" ],
+          "number": 1500,
+          "start": "2019-04-15",
+          "duration": 1.5,
+          "type": "task"
+        }
+      ],
+      "number": 1000
+    },
+    {
+      "name": "Definitionsphase",
+      "wp": [
+        {
+          "name": "Untersuchung der Zuverlässigkeitsmethoden",
+          "objectives": [
+            "Vergleich zwischen theoretischer Arbeit und vorliegenden Tools",
+            "Ermittlung von Ein- und Ausgabeformat"
+          ],
+          "inputs": [ "Tools zur Zuverlässigkeitsanalyse" ],
+          "outputs": [
+            {
+              "to": "AP 2300",
+              "reason": "Verfügbare Ergebnisse für Vergleich"
+            },
+            {
+              "to": "AP 3100",
+              "reason": "Kenntnisse der Benutzung"
+            }
+          ],
+          "tasks": [
+            "Untersuchung der Verarbeitung bei bestehenden Modellen",
+            "Erzeugung von Ein- und Ausgabedaten"
+          ],
+          "results": [ "Ausreichendes Verständnis der Tools zur Anwendung auf Satellitenmissionen" ],
+          "number": 2100,
+          "start": "2019-04-15",
+          "duration": 1.5,
+          "type": "task"
+        },
+        {
+          "name": "Untersuchung der Daten",
+          "objectives": [
+            "Ermittlung der verfügbaren Größen und Formate",
+            "Möglichkeiten zur Behandlung der Daten"
+          ],
+          "inputs": [ "Gesammelte Daten" ],
+          "outputs": [
+            {
+              "to": "AP 2300",
+              "reason": "Verfügbare Eingabedaten"
+            },
+            {
+              "to": "AP 3200",
+              "reason": "Nötige Methoden zur Verarbeitung"
+            }
+          ],
+          "tasks": [ "Untersuchung der verfügbaren Daten für reale Missionen" ],
+          "results": [
+            "Geeignete Größen zum Vergleich",
+            "Methoden um die Daten dementsprechen zur Verarbeiten"
+          ],
+          "number": 2200,
+          "start": "2019-04-15",
+          "duration": 1.5,
+          "type": "task"
+        },
+        {
+          "name": "Vergleichsmethoden",
+          "objectives": [ "Untersuchung und Festlegung der zum Vergleich geeigneten Größen" ],
+          "inputs": [],
+          "outputs": [
+            {
+              "to": "AP 3300",
+              "reason": "Nötige Methoden zum Vergleich"
+            }
+          ],
+          "tasks": [
+            "Vergleich der Ausgabe der Methoden und der verarbeiteten Daten",
+            "Ausarbeitung von Methoden zum Vergleich"
+          ],
+          "results": [ "Methoden zum Vergleich der Ergebnisse" ],
+          "number": 2300,
+          "start": "2019-04-15",
+          "duration": 1.5,
+          "type": "task"
+        }
+      ],
+      "number": 2000
+    },
+    {
+      "name": "Materiale und Methoden",
+      "wp": [
+        {
+          "name": "Modellierung und Auswertung mit Tools",
+          "objectives": [
+            "Modellierung von Missionen in den Tools",
+            "Darstellung der Ergebnisse der Tools"
+          ],
+          "inputs": [],
+          "outputs": [
+            {
+              "to": "AP 4100",
+              "reason": "Methoden"
+            },
+            {
+              "to": "AP 3300",
+              "reason": "Verfügbare Eingabedaten zum Vergleich"
+            }
+          ],
+          "tasks": [
+            "Modellierung von Satellitenarchitekturen",
+            "Ermitteln und Eingabe weiterer Parameter, wie z.B. Orbit"
+          ],
+          "results": [ "Vorhersagedaten der verschiedenen Tools" ],
+          "number": 3100,
+          "start": "2019-04-15",
+          "duration": 1.5,
+          "type": "task"
+        },
+        {
+          "name": "Datenbehandlung",
+          "objectives": [ "Gewinnung vergleichbarer Daten aus Realdaten von Satellitenmissionen" ],
+          "inputs": [ "Realdaten" ],
+          "outputs": [
+            {
+              "to": "AP 4200",
+              "reason": "Methoden"
+            },
+            {
+              "to": "AP 3300",
+              "reason": "Eingabedatenformat zum Vergleich"
+            }
+          ],
+          "tasks": [
+            "Betrachtung verfügbarer Daten von Satellitenmissionen",
+            "Ermittlung geeigneter Größen und Verarbeitunsmethoden"
+          ],
+          "results": [ "Geeignete Größen für Vergleich mit Tools" ],
+          "number": 3200,
+          "start": "2019-04-15",
+          "duration": 1.5,
+          "type": "task"
+        },
+        {
+          "name": "Vergleichsmethoden",
+          "objectives": [ "Vergleich von Ausgabe der Tools und verarbeiteter Realdaten" ],
+          "inputs": [],
+          "outputs": [
+            {
+              "to": "AP 4300",
+              "reason": "Methoden"
+            }
+          ],
+          "tasks": [
+            "Betrachtung der zum Vergleich verügbaren Daten",
+            "Ermittlung geeigneter Größen und Methoden zum Vergleich dieser Daten"
+          ],
+          "results": [
+            "Methode zum Verleich von Tools und Realdaten",
+            "Vergleichsgrößen zur Bewertung der Vorhersagegenauigkeit"
+          ],
+          "number": 3300,
+          "start": "2019-04-15",
+          "duration": 1.5,
+          "type": "task"
+        }
+      ],
+      "number": 3000
+    },
+    {
+      "name": "Durchführung",
+      "wp": [
+        {
+          "name": "Modellierung der Testmission",
+          "objectives": [
+            "Erstellung der nötigen Eingaben für die untersuchten Tools",
+            "Erzeugung der Ausgabe"
+          ],
+          "inputs": [],
+          "outputs": [
+            {
+              "to": "AP 4300",
+              "reason": "Daten"
+            },
+            {
+              "to": "AP 4400",
+              "reason": "Daten"
+            }
+          ],
+          "tasks": [
+            "Modellierung der ausgewählten Mission in den untersuchten Tools",
+            "Eingabe weiterer Daten zur Performance-Berechnung",
+            "Generierung der Ausgabedaten"
+          ],
+          "results": [ "Vorhersagen der Tools stehen zur Auswertung zur Verfügung" ],
+          "number": 4100,
+          "start": "2019-04-15",
+          "duration": 1.5,
+          "type": "task"
+        },
+        {
+          "name": "Datenverarbeitung",
+          "objectives": [ "Verarbeitung der Realdaten" ],
+          "inputs": [],
+          "outputs": [
+            {
+              "to": "AP 4300",
+              "reason": "Daten"
+            },
+            {
+              "to": "AP 4400",
+              "reason": "Daten"
+            }
+          ],
+          "tasks": [
+            "Gewinnung der festgelegten Vergleichsgrößen aus ausgewählter Satellitenmission",
+            "Anwendung von Verarbeitungsmethoden auf den Datensatz"
+          ],
+          "results": [ "Datensatz von realer Satellitenmission steht zum Vergleich zur Verfügung" ],
+          "number": 4200,
+          "start": "2019-04-15",
+          "duration": 1.5,
+          "type": "task"
+        },
+        {
+          "name": "Vergleich",
+          "objectives": [ "Anwendung gewählter Vergleichsmethoden auf beide gewonnene Datensätze" ],
+          "inputs": [],
+          "outputs": [
+            {
+              "to": "AP 4400",
+              "reason": "Daten"
+            }
+          ],
+          "tasks": [
+            "Durchführung der gewählten Tests auf die Datensätze",
+            "Gewinnung der Vergleichsgrößen"
+          ],
+          "results": [ "Vergleichsdaten der verschiedenen Tools und Realdaten" ],
+          "number": 4300,
+          "start": "2019-04-15",
+          "duration": 1.5,
+          "type": "task"
+        },
+        {
+          "name": "Auswertung",
+          "objectives": [
+            "Bewertung der Ausgaben der Tools und Realdaten",
+            "Bewertung der Realitätsnähe der verschiedenen Tools"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "tasks": [
+            "Diskussion der Ergebnisse aller Methoden",
+            "Diskussion der Schwächen und Potentiale der Methoden"
+          ],
+          "results": [
+            "Breiter Vergleich verschiedener Methoden zur Zuverlässigkeitsanalyse",
+            "Analyse des weiteren Entwicklungspotentials der verfügbaren Tools"
+          ],
+          "number": 4400,
+          "start": "2019-04-15",
+          "duration": 1.5,
+          "type": "task"
+        }
+      ],
+      "number": 4000
+    },
+    {
+      "name": "Dokumentation",
+      "wp": [
+        {
+          "name": "Schriftliche Ausarbeitung",
+          "objectives": [ "Erarbeitung der schriftlichen Dokumentation" ],
+          "inputs": [ "Alle vorherigen AP" ],
+          "outputs": [
+            {
+              "to": "AP 5200",
+              "reason": "Grundlage von"
+            }
+          ],
+          "tasks": [
+            "Ausarbeitung der schriftlichen Dokumentation, inkl. Quellen, Ergebnisse",
+            "Verarbeitung der gewonnen Daten in präsentierbares Format (Tabellen, Graphen, ...)"
+          ],
+          "results": [ "Fristgerechte Abgabe hochwertiger Dokumentation" ],
+          "number": 5100,
+          "start": "2019-04-15",
+          "duration": 1.5,
+          "type": "task"
+        },
+        {
+          "name": "Präsentation",
+          "objectives": [
+            "Ausarbeitung von Präsentationsmaterialien, Vortrag",
+            "Halten der Präsentation"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "tasks": [
+            "Auswahl von Inhalten der Dokumentation",
+            "Verarbeitun in geeignete Präsentationsmaterialien",
+            "Ausarbeitung eines mündlichen Vortrags",
+            "Prüfer und Gäste mit einem packenden und informativen Vortrag begeistern"
+          ],
+          "results": [ "Ende?" ],
+          "number": 5200,
+          "start": "2019-04-15",
+          "duration": 1.5,
+          "type": "task"
+        }
+      ],
+      "number": 5000
+    }
+  ]
+}
